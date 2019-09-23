@@ -7,13 +7,19 @@ nav {
   margin-bottom: 1em;
   padding-bottom: 0.2em;
   padding-top: 2em;
-  background-color: #efefef;
+  /* background-color: #efefef; */
+  background-image: linear-gradient(to right, rgb(88, 143, 131), rgb(6, 92, 107));
 }
 
 nav ul {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+
+nav li:hover {
+  transform: skewY(2deg) skewX(15deg) scale(1.1);
+  text-shadow: .5rem 1rem 2rem rgb(42, 230, 217);
 }
 
 p,
@@ -23,6 +29,17 @@ li {
 
 ul {
   list-style: none;
+}
+
+li,
+a {
+  text-decoration: none;
+  color: #19423b;
+}
+
+li,
+a:hover {
+  color: #1bf4af;
 }
 
 input,
@@ -46,4 +63,13 @@ textarea {
 .delete-button {
   color: red;
   cursor: pointer;
+}
+
+button {
+  box-shadow: 0 0.5rem 1rem rgb(46, 46, 46, 0.7);
+  color: white;
+}
+
+.err {
+  color: rgb(196, 7, 7);
 }
