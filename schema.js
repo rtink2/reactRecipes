@@ -23,6 +23,7 @@ exports.typeDefs = `
 
   type Query {
     getAllRecipes: [Recipe]
+    getRecipe(_id: ID!): Recipe
 
     getCurrentUser: User
   }

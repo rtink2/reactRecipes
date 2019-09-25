@@ -14,24 +14,30 @@ const NavbarAuth = ({ session }) => (
   <Fragment>
     <ul>
       <li>
-        <NavLink to='/' exact>
+        <NavLink to='/' exact className='myNav'>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to='/search'>Search</NavLink>
+        <NavLink to='/search' className='myNav'>
+          Search
+        </NavLink>
       </li>
       <li>
-        <NavLink to='/recipe/add'>Add Recipe</NavLink>
+        <NavLink to='/recipe/add' className='myNav'>
+          Add Recipe
+        </NavLink>
       </li>
       <li>
-        <NavLink to='/profile'>Profile</NavLink>
+        <NavLink to='/profile' className='myNav'>
+          Profile
+        </NavLink>
       </li>
       <li>
         <Signout />
       </li>
     </ul>
-    <h4>
+    <h4 className='userName'>
       Welcome, <strong>{session.getCurrentUser.username}</strong>
     </h4>
   </Fragment>

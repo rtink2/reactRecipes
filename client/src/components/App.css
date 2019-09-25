@@ -1,3 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(
+    to right,
+    rgb(235, 245, 243),
+    rgb(202, 207, 206)
+  );
+}
+
 .App {
   text-align: center;
 }
@@ -8,7 +18,11 @@ nav {
   padding-bottom: 0.2em;
   padding-top: 2em;
   /* background-color: #efefef; */
-  background-image: linear-gradient(to right, rgb(88, 143, 131), rgb(6, 92, 107));
+  background-image: linear-gradient(
+    to right,
+    rgb(107, 182, 166),
+    rgb(13, 145, 125)
+  );
 }
 
 nav ul {
@@ -19,7 +33,21 @@ nav ul {
 
 nav li:hover {
   transform: skewY(2deg) skewX(15deg) scale(1.1);
-  text-shadow: .5rem 1rem 2rem rgb(42, 230, 217);
+  text-shadow: 0.5rem 1rem 2rem rgb(42, 230, 217);
+}
+
+.userName {
+  text-shadow: 0.5rem 1rem 2rem rgb(42, 230, 217);
+  margin-top: -35px;
+}
+
+.recipeName {
+  text-shadow: 0.5rem 1rem 2rem rgb(42, 230, 217);
+}
+
+.recipeName:hover {
+  text-shadow: 0.5rem 1rem 2rem rgb(42, 230, 217);
+  color: #f08080;
 }
 
 p,
@@ -37,9 +65,8 @@ a {
   color: #19423b;
 }
 
-li,
-a:hover {
-  color: #1bf4af;
+.myNav:hover {
+  color: #f08080;
 }
 
 input,
@@ -63,6 +90,10 @@ textarea {
 .delete-button {
   color: red;
   cursor: pointer;
+}
+
+.other-button {
+  background-color: #f08080;
 }
 
 button {
