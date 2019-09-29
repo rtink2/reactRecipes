@@ -6,19 +6,19 @@ const handleSignout = (client, history) => {
   localStorage.setItem('token', '');
   client.resetStore();
   history.push('/');
-}
+};
 
 const Signout = ({ history }) => (
   <ApolloConsumer>
     {client => {
-
       return (
         <button
           onClick={() => handleSignout(client, history)}
           className='other-button'
         >
-        SignOut</button>
-      )
+          Sign Out
+        </button>
+      );
     }}
   </ApolloConsumer>
 );

@@ -17,6 +17,7 @@ export const GET_RECIPE = gql`
       _id
       name
       category
+      mealType
       description
       ingredients
       instructions
@@ -27,11 +28,22 @@ export const GET_RECIPE = gql`
   }
 `;
 
+export const SEARCH_RECIPES = gql`
+  query($searchTerm: String) {
+    searchRecipes(searchTerm: $searchTerm) {
+      _id
+      name
+      likes
+    }
+  }
+`;
+
 /* RECIPE MUTATIONS */
 export const ADD_RECIPE = gql`
   mutation(
     $name: String!
     $category: String!
+    $mealType: String!
     $ingredients: String!
     $description: String!
     $instructions: String!
@@ -40,6 +52,7 @@ export const ADD_RECIPE = gql`
     addRecipe(
       name: $name
       category: $category
+      mealType: $mealType
       ingredients: $ingredients
       description: $description
       instructions: $instructions
@@ -48,11 +61,29 @@ export const ADD_RECIPE = gql`
       _id
       name
       category
+      mealType
       description
       ingredients
       instructions
       createdDate
       likes
+    }
+  }
+`;
+
+export const LIKE_RECIPE = gql`
+  mutation($_id: ID!, $username: String!) {
+    likeRecipe(_id: $_id, username: $username) {
+      _id
+      likes
+    }
+  }
+`;
+
+export const DELETE_USER_RECIPE = gql`
+  mutation($_id: ID!) {
+    deleteUserRecipe(_id: $_id) {
+      _id
     }
   }
 `;
@@ -64,6 +95,20 @@ export const GET_CURRENT_USER = gql`
       username
       joinDate
       email
+      favorites {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const GET_USER_RECIPES = gql`
+  query($username: String!) {
+    getUserRecipes(username: $username) {
+      _id
+      name
+      likes
     }
   }
 `;

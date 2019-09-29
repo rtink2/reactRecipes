@@ -20,13 +20,13 @@ const schema = makeExecutableSchema({
   resolvers
 });
 
-
 // Connects to database
 mongoose
   .connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
   })
   .then(() => console.log('DB CONNECTED!'))
   .catch(err => console.log(err));
@@ -35,7 +35,7 @@ mongoose
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: 'http://localhost:3000',
   credentials: true
 };
 app.use(cors(corsOptions));
@@ -55,7 +55,7 @@ app.use(async (req, res, next) => {
 });
 
 // Create GraphiQL application
-app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Connect schemas with GraphQL
 app.use(
@@ -76,4 +76,3 @@ const PORT = process.env.PORT || 4444;
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}`);
 });
-

@@ -50,6 +50,18 @@ nav li:hover {
   color: #f08080;
 }
 
+.likes {
+  color: rgb(6, 191, 163);
+  font-weight: 900;
+  font-style: italic;
+}
+
+.addRecipe {
+  color: #f08080;
+  font-weight: 900;
+  font-style: italic;
+}
+
 p,
 li {
   font-size: 2rem;
@@ -102,5 +114,7 @@ button {
 }
 
 .err {
-  color: rgb(196, 7, 7);
+  color: rgb(247, 4, 4);
+  font-size: 5rem;
+  text-transform: uppercase;
 }

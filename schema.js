@@ -4,6 +4,7 @@ exports.typeDefs = `
     _id: ID
     name: String!
     category: String!
+    mealType: String!
     ingredients: String!
     description: String!
     instructions: String!
@@ -24,8 +25,10 @@ exports.typeDefs = `
   type Query {
     getAllRecipes: [Recipe]
     getRecipe(_id: ID!): Recipe
+    searchRecipes(searchTerm: String): [Recipe]
 
     getCurrentUser: User
+    getUserRecipes(username: String!):[Recipe]
   }
 
   type Token {
@@ -33,7 +36,11 @@ exports.typeDefs = `
   }
 
   type Mutation {
-    addRecipe(name: String!, category: String!, ingredients: String!, description: String!, instructions: String!, username: String): Recipe
+    addRecipe(name: String!, category: String!, mealType: String!, ingredients: String!, description: String!, instructions: String!, username: String): Recipe
+
+    deleteUserRecipe(_id: ID): Recipe
+
+    likeRecipe(_id: ID!, username: String!): Recipe
 
     signinUser(username: String!, password: String!): Token
 

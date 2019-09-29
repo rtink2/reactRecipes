@@ -16,6 +16,10 @@ const RecipeSchema = new Schema({
     type: String,
     required: true
   },
+  mealType: {
+    type: String,
+    required: true
+  },
   // ingredients: [{ type: Schema.Types.ObjectId, ref: 'Ingredient' }],
   ingredients: {
     type: String,
@@ -40,6 +44,10 @@ const RecipeSchema = new Schema({
   username: {
     type: String
   }
+});
+
+RecipeSchema.index({
+  '$**': 'text'
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);

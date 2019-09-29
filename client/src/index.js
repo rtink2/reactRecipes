@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import './index.css';
 import ApolloClient from 'apollo-boost';
+// import ApolloClient from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 import App from './components/App';
@@ -50,10 +51,10 @@ const Root = ({ refetch, session }) => (
         <Route path='/search' component={Search} />
         <Route
           path='/recipe/add'
-          render={() => <AddRecipe session={session} refetch={refetch} />}
+          render={() => <AddRecipe session={session} />}
         />
         <Route path='/recipes/:_id' component={RecipePage} />
-        <Route path='/profile' component={Profile} />
+        <Route path='/profile' render={() => <Profile session={session} />} />
         <Route path='/signin' render={() => <Signin refetch={refetch} />} />
         <Route path='/signup' render={() => <Signup refetch={refetch} />} />
         <Redirect to='/' />

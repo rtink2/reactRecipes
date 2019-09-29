@@ -11,8 +11,8 @@ const App = () => (
     <Query query={GET_ALL_RECIPES}>
       {({ data, loading, error }) => {
         if (loading) return <div>Loading...</div>
-        if (error) return <div>Error</div>
-        console.log(data);
+        if (error) return <div className='err'>Error</div>;
+        // console.log(data);
         return (
           <ul>
             {data.getAllRecipes.map(recipe => (
