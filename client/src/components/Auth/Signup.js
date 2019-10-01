@@ -26,7 +26,7 @@ class Signup extends Component {
 
   handleSubmit = (event, signupUser) => {
     event.preventDefault();
-    signupUser().then(async ({data}) => {
+    signupUser().then(async ({ data }) => {
       localStorage.setItem('token', data.signupUser.token);
       await this.props.refetch();
       this.clearState();
@@ -37,10 +37,7 @@ class Signup extends Component {
   validateForm = () => {
     const { username, email, password, passwordConfirmation } = this.state;
     const isInvalid =
-      !username ||
-      !email ||
-      !password ||
-      password !== passwordConfirmation;
+      !username || !email || !password || password !== passwordConfirmation;
     return isInvalid;
   };
 
@@ -91,7 +88,7 @@ class Signup extends Component {
                 <button
                   disabled={loading || this.validateForm()}
                   type='submit'
-                  className='button-primary'
+                  className='other-button'
                 >
                   Sign Up
                 </button>

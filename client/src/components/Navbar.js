@@ -47,7 +47,7 @@ const NavbarAuth = ({ session }) => (
 const NavbarUnAuth = () => (
   <ul>
     <li>
-      <NavLink to='/' exact>
+      <NavLink to='/' exact className='myNav'>
         Home
       </NavLink>
     </li>

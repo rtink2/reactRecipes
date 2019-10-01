@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "React-Apollo-GraphQL projects",
   "main": "server.js",
+  "engines": {
+    "node": "v10.16.0"
+  },
   "scripts": {
     "server": "nodemon server.js",
     "client": "cd client && npm start",

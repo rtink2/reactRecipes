@@ -62,6 +62,7 @@ exports.resolvers = {
       {
         name,
         category,
+        imageUrl,
         mealType,
         ingredients,
         description,
@@ -73,6 +74,7 @@ exports.resolvers = {
       const newRecipe = await new Recipe({
         name,
         category,
+        imageUrl,
         mealType,
         ingredients,
         description,
@@ -106,6 +108,37 @@ exports.resolvers = {
     deleteUserRecipe: async (root, { _id }, { Recipe }) => {
       const recipe = await Recipe.findOneAndRemove({ _id });
       return recipe;
+    },
+    updateUserRecipe: async (
+      root,
+      {
+        _id,
+        name,
+        imageUrl,
+        mealType,
+        category,
+        ingredients,
+        instructions,
+        description
+      },
+      { Recipe }
+    ) => {
+      const updatedRecipe = await Recipe.findOneAndUpdate(
+        { _id },
+        {
+          $set: {
+            name,
+            imageUrl,
+            mealType,
+            category,
+            ingredients,
+            instructions,
+            description
+          }
+        },
+        { new: true }
+      );
+      return updatedRecipe;
     },
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });

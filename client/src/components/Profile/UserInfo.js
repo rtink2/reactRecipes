@@ -5,16 +5,18 @@ const formatDate = date => {
   const newDate = new Date(date).toLocaleDateString('en-US');
   const newTime = new Date(date).toLocaleTimeString('en-Us');
   return `${newDate} at ${newTime}`;
-}
+};
 
 const UserInfo = ({ session }) => (
-  <div>
-    <h3>Chef Profile</h3>
+  <div className='App'>
+    <h3 className='chef-border'>Chef Profile</h3>
     <p>Username: {session.getCurrentUser.username}</p>
     <p>Email: {session.getCurrentUser.email}</p>
     <p>Join Date: {formatDate(session.getCurrentUser.joinDate)}</p>
     <ul>
-      <h3>{session.getCurrentUser.username}' Favorites</h3>
+      <h4 className='chef-border'>
+        {session.getCurrentUser.username}' Favorites
+      </h4>
       {session.getCurrentUser.favorites.map(favorite => (
         <li key={favorite._id}>
           <Link to={`/recipes/${favorite._id}`}>
@@ -37,4 +39,3 @@ const UserInfo = ({ session }) => (
 );
 
 export default UserInfo;
-

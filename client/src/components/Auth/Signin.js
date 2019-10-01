@@ -70,7 +70,7 @@ class Signin extends Component {
                 <button
                   disabled={loading || this.validateForm()}
                   type='submit'
-                  className='button-primary'
+                  className='other-button'
                 >
                   Sign In
                 </button>

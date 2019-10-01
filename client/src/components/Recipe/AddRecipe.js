@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import CKEditor from 'react-ckeditor-component';
 import { Mutation } from 'react-apollo';
 
 import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from '../../queries';
@@ -8,6 +9,7 @@ import withAuth from '../withAuth';
 
 const initialState = {
   name: '',
+  imageUrl: '',
   instructions: '',
   mealType: 'Breakfast',
   category: 'World Cuisine',
@@ -35,6 +37,16 @@ class AddRecipe extends Component {
     });
   };
 
+  handleEditorIgredientsChange = event => {
+    const newContent = event.editor.getData();
+    this.setState({ ingredients: newContent });
+  };
+
+  handleEditorInstructionsChange = event => {
+    const newContent = event.editor.getData();
+    this.setState({ instructions: newContent });
+  };
+
   handleSubmit = (event, addRecipe) => {
     event.preventDefault();
     addRecipe().then(({ data }) => {
@@ -46,6 +58,7 @@ class AddRecipe extends Component {
   validateForm = () => {
     const {
       name,
+      imageUrl,
       instructions,
       mealType,
       category,
@@ -54,6 +67,7 @@ class AddRecipe extends Component {
     } = this.state;
     const isInvalid =
       !name ||
+      !imageUrl ||
       !instructions ||
       !mealType ||
       !category ||
@@ -66,7 +80,7 @@ class AddRecipe extends Component {
     const { _id } = this.props;
     const { getAllRecipes } = cache.readQuery({
       query: GET_ALL_RECIPES,
-      variables: { _id },
+      variables: { _id }
     });
 
     cache.writeQuery({
@@ -81,6 +95,7 @@ class AddRecipe extends Component {
   render() {
     const {
       name,
+      imageUrl,
       instructions,
       mealType,
       category,
@@ -94,6 +109,7 @@ class AddRecipe extends Component {
         mutation={ADD_RECIPE}
         variables={{
           name,
+          imageUrl,
           instructions,
           mealType,
           category,
@@ -114,6 +130,7 @@ class AddRecipe extends Component {
                 className='form'
                 onSubmit={event => this.handleSubmit(event, addRecipe)}
               >
+                <label htmlFor='name'>Recipe Name</label>
                 <input
                   type='text'
                   name='name'
@@ -121,6 +138,15 @@ class AddRecipe extends Component {
                   onChange={this.handleChange}
                   value={name}
                 />
+                <label htmlFor='imageUrl'>Recipe Image</label>
+                <input
+                  type='text'
+                  name='imageUrl'
+                  placeholder='Recipe Image'
+                  onChange={this.handleChange}
+                  value={imageUrl}
+                />
+                <label htmlFor='imageUrl'>Meal Type</label>
                 <select
                   name='mealType'
                   onChange={this.handleChange}
@@ -133,6 +159,7 @@ class AddRecipe extends Component {
                   <option value='Snack'>Snack</option>
                   <option value='Cocktails'>Cocktails</option>
                 </select>
+                <label htmlFor='category'>Category of Recipe</label>
                 <select
                   name='category'
                   onChange={this.handleChange}
@@ -161,6 +188,7 @@ class AddRecipe extends Component {
                   <option value='Canadian'>Canadian</option>
                   <option value='American'>American</option>
                 </select>
+                <label htmlFor='description'>Recipe Description</label>
                 <input
                   type='text'
                   name='description'
@@ -168,6 +196,7 @@ class AddRecipe extends Component {
                   onChange={this.handleChange}
                   value={description}
                 />
+                <label htmlFor='description'>Add Ingredients</label>
                 <input
                   type='text'
                   name='ingredients'
@@ -175,11 +204,17 @@ class AddRecipe extends Component {
                   onChange={this.handleChange}
                   value={ingredients}
                 />
-                <textarea
+                {/* <label htmlFor='ingredients'>Add Ingredients</label>
+                <CKEditor
+                  name='ingredients'
+                  content={ingredients}
+                  events={{ change: this.handleEditorIngredientsChange }}
+                /> */}
+                <label htmlFor='instructions'>Add Instructions</label>
+                <CKEditor
                   name='instructions'
-                  placeholder='Add Instructions'
-                  onChange={this.handleChange}
-                  value={instructions}
+                  content={instructions}
+                  events={{ change: this.handleEditorInstructionsChange }}
                 />
                 <button
                   disabled={loading || this.validateForm()}

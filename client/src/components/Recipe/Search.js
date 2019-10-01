@@ -6,15 +6,15 @@ import { SEARCH_RECIPES } from '../../queries';
 import SearchItem from './SearchItem';
 
 class Search extends Component {
-    state = {
-      searchResults: []
-    }
+  state = {
+    searchResults: []
+  };
 
-    handleChange = ({ searchRecipes }) => {
-      this.setState({
-        searchResults: searchRecipes
-      });
-    }
+  handleChange = ({ searchRecipes }) => {
+    this.setState({
+      searchResults: searchRecipes
+    });
+  };
 
   render() {
     const { searchResults } = this.state;
